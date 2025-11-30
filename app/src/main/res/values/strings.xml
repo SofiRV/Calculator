@@ -17,4 +17,8 @@
     <string name="minus">-</string>
     <string name="equal">=</string>
     <string name="calculator">Calculator</string>
+    <string name="clear">AC</string>
+    <string name="erase">C</string>
+    <string name="perc">%</string>
+    <string name="dec">.</string>
 </resources>
