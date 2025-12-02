@@ -34,6 +34,13 @@ private Button button00;
 private Button buttonDot;
 private Button buttonEqual;
 private String inputText = "";
+private double memoryValue=0.0;
+private Button buttonMc;
+private Button buttonMr;
+private Button buttonMplus;
+private Button buttonMminus;
+private Button buttonMs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,11 @@ private String inputText = "";
             return insets;
         });
         input = findViewById(R.id.input);
+        buttonMc = findViewById(R.id.button_mc);
+        buttonMr = findViewById(R.id.button_mr);
+        buttonMplus = findViewById(R.id.button_mplus);
+        buttonMminus = findViewById(R.id.button_mminus);
+        buttonMs = findViewById(R.id.button_ms);
         buttonClear = findViewById(R.id.button_clear);
         buttonErase = findViewById(R.id.button_erase);
         buttonPerc = findViewById(R.id.button_perc);
@@ -129,7 +141,46 @@ private String inputText = "";
                 input.setText(inputText);
             }
         });
-
+        buttonMc.setOnClickListener(v -> {
+            memoryValue=0.0;
+        });
+        buttonMr.setOnClickListener(v -> {
+            input.setText(String.valueOf(memoryValue));
+            inputText = String.valueOf(memoryValue);
+        });
+        buttonMplus.setOnClickListener(v -> {
+            try{
+                double currentValue = Double.parseDouble(input.getText().toString());
+                memoryValue += currentValue;
+                input.setText(String.valueOf(memoryValue));
+                inputText = String.valueOf(memoryValue);
+            }catch (Exception e){
+                input.setText("Error");
+                inputText = "";
+            }
+        });
+        buttonMminus.setOnClickListener(v -> {
+            try {
+                double currentValue = Double.parseDouble(input.getText().toString());
+                memoryValue -= currentValue;
+                input.setText(String.valueOf(memoryValue));
+                inputText = String.valueOf(memoryValue);
+            } catch (Exception e) {
+                input.setText("Error");
+                inputText = "";
+            }
+        });
+        buttonMs.setOnClickListener(v -> {
+            try {
+                double currentValue = Double.parseDouble(input.getText().toString());
+                memoryValue = currentValue;
+                input.setText(String.valueOf(memoryValue));
+                inputText = String.valueOf(memoryValue);
+            } catch (Exception e) {
+                input.setText("Error");
+                inputText = "";
+            }
+        });
     }
     private void appendNumber(String number) {
         inputText += number;
@@ -150,7 +201,8 @@ private String inputText = "";
         }
     }
     private double evaluateExpression(String expression) {
-        String[] tokens = inputText.split(" ");
+        String[] tokens = expression.split(" ");
+
         if (tokens.length == 0) return 0;
 
         double result = Double.parseDouble(tokens[0]);

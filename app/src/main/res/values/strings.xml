@@ -21,4 +21,9 @@
     <string name="erase">C</string>
     <string name="perc">%</string>
     <string name="dec">.</string>
+    <string name="mc">MC</string>
+    <string name="mr">MR</string>
+    <string name="mplus">M+</string>
+    <string name="mminus">M-</string>
+    <string name="ms">MS</string>
 </resources>
